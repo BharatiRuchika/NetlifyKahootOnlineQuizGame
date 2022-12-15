@@ -277,11 +277,12 @@ console.log(PORT);
 // }
 
 if(process.env.NODE_ENV==="production"){
-  app.use(express.static(path.join(__dirname,"./Frontend_Kahoot-main/build")));
+  app.use(express.static(path.join(__dirname,"Frontend_Kahoot-main/build")));
   const path = require("path");
 //   app.use(express.static(path.join(__dirname, './my_final_project_front/build')))
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './Frontend_Kahoot-main/build'))
+    // res.sendFile(path.join(__dirname, 'Frontend_Kahoot-main/build'))
+    res.send("im run");
 })
 }
 httpServer.listen(PORT, () => {
