@@ -45,6 +45,7 @@ var app = express();
 // app.use(cors({ credentials: true }));
 // const socket = require('socket.io');
 app.use(function (req, res, next) {
+  console.log("environment",process.env.NODE_ENV)
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type Accept');
