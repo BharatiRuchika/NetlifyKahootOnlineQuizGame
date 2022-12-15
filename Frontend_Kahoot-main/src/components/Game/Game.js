@@ -215,7 +215,7 @@ class Game extends Component {
         this.setState({ HostId: id });
     }
     addPlayer(name, id, pin) {
-
+        console.log("im in add player");
         if (pin == this.state.pin) {
             this.audio.play();
             // this.setState({id:id})
