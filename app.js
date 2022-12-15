@@ -242,6 +242,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use((err,req,res,next)=>{
 //   next();
 // })
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use((req,res,next)=>{
@@ -285,9 +288,7 @@ if(process.env.NODE_ENV==="production"){
 //     res.send("im run");
 // })
 }
-app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-})
+
 httpServer.listen(PORT, () => {
  console.log("s Is Running Port: " + PORT);
 });
