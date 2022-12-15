@@ -243,7 +243,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   next();
 // })
 app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+  // res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+  res.send("working")
 })
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
