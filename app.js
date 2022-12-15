@@ -286,8 +286,7 @@ if(process.env.NODE_ENV==="production"){
 // })
 }
 app.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'Frontend_Kahoot-main/build'))
-  res.send("im run");
+  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 })
 httpServer.listen(PORT, () => {
  console.log("s Is Running Port: " + PORT);
