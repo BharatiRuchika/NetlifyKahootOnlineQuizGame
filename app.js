@@ -58,13 +58,13 @@ const {Server} = require("socket.io");
 const httpServer = createServer(app);
 // const srver = require('http').createServer(app)
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "*",
   credentials:true,
   optionSuccessStatus:200
 }));
 const io = new Server(httpServer,{
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     credentials:true,      
     optionSuccessStatus:200
 
