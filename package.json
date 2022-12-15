@@ -7,7 +7,7 @@
   },
   "scripts": {
      "start": "node app.js",
-    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon app"
+    "dev": "SET NODE_ENV=production& nodemon app"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
