@@ -12,7 +12,7 @@ var connectionOptions = {
 
 // 
 // let socket = io.connect('https://my-kahoot-backend.herokuapp.com/',connectionOptions);
-let socket = io("http://localhost:3001");
+let socket = io("https://online-kahoot-multiplayer-quiz-game.vercel.app/");
 // const socket = io.connect("https://my-kahoot-backend.herokuapp.com/", { secure: true, reconnection: true, rejectUnauthorized: false });
 console.log("socket",socket);
 export default socket;
