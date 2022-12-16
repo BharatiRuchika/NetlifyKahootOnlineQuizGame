@@ -52,19 +52,22 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
+const corsOptions = {
+
+  origin: true,
+  credentials: true,
+ 
+};
+
+app.use(cors(corsOptions));
 // const port = process.env.PORT;
 const  {createServer}  = require("http");
 const {Server} = require("socket.io");
 const httpServer = createServer(app);
 // const srver = require('http').createServer(app)
-app.use(cors({
-  origin: "*",
-  credentials:true,
-  optionSuccessStatus:200
-}));
 const io = new Server(httpServer,{
   cors: {
-    origin: '*',
+    origin: true,
     credentials:true,      
     optionSuccessStatus:200
 
