@@ -194,9 +194,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get('/',(req,res)=>{
-  console.log(res.send("App is working fine"));
-})
+// app.get('/',(req,res)=>{
+//   console.log(res.send("App is working fine"));
+// })
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use((req,res,next)=>{
