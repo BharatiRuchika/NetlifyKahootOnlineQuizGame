@@ -242,10 +242,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use((err,req,res,next)=>{
 //   next();
 // })
-app.get('/', (req, res) => {
-  // res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-  res.send("working")
-})
+// app.get('/', (req, res) => {
+//   // res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+//   res.send("working")
+// })
+
+if(process.env.NODE_ENV=="production"){
+  const path = require("path");
+  app.get("/",(req,res)=>{
+    app.use(express.static(path.resolve(__dirname,'client','build','index.html')))
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+  })
+}
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use((req,res,next)=>{
@@ -272,23 +280,17 @@ app.use('/quizquestions',quizQuestionsRouter);
 //console.log("port",process.env.HTTP_PORT)
 const PORT = process.env.PORT||3001;
 console.log(PORT);
-// if(process.env.NODE_ENV=="production"){
-//     const path = require("path");
-//     app.get("/",(req,res)=>{
-//       app.use(express.static(path.resolve(__dirname,'Frontend_Kahoot-main','build','index.html')))
-//       res.sendFile(path.resolve(__dirname,'Frontend_Kahoot-main','build','index.html'));
-//     })
-// }
 
-if(process.env.NODE_ENV==="production"){
-  app.use(express.static(path.join(__dirname,"Frontend_Kahoot-main/build")));
-  const path = require("path");
-//   app.use(express.static(path.join(__dirname, './my_final_project_front/build')))
-app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'Frontend_Kahoot-main/build'))
-    res.send("im run");
-})
-}
+
+// if(process.env.NODE_ENV==="production"){
+//   // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
+//   const path = require("path");
+//   app.use(express.static(path.join(__dirname, 'client/build')))
+//   app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/build'))
+//   // res.send("im run");
+// })
+// }
 
 httpServer.listen(PORT, () => {
  console.log("s Is Running Port: " + PORT);
