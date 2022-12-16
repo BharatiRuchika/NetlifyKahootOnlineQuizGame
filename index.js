@@ -225,15 +225,15 @@ const PORT = process.env.PORT||3001;
 console.log(PORT);
 
 
-// if(process.env.NODE_ENV==="production"){
-//   // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
-//   const path = require("path");
-//   app.use(express.static(path.join(__dirname, 'client/build')))
-//   app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build'))
-//   // res.send("im run");
-// })
-// }
+if(process.env.NODE_ENV==="production"){
+  // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
+  const path = require("path");
+  app.use(express.static(path.join(__dirname, 'client/build')))
+  app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build'))
+  // res.send("im run");
+})
+}
 
 httpServer.listen(PORT, () => {
  console.log("s Is Running Port: " + PORT);
