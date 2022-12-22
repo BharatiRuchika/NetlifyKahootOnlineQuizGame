@@ -5,6 +5,7 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("mongodb");
 exports.addUser = async (req, res, next) => {
+  console.log("im here");
   console.log(req.body);
   try {
     const schema = Joi.object({
@@ -15,13 +16,15 @@ exports.addUser = async (req, res, next) => {
     })
     var {error} = await schema.validate(req.body);
     if(error){
+      console.log("im in error");
+      console.log(error.details[0].message)
       return res.status(400).send({msg:error.details[0].message})
     }
     var user = await usersData.find({ email: req.body.email });
     console.log("user", user);
     console.log("length", user.length);
   } catch (err) {
-    cosole.log("err", err);
+    console.log("err", err);
   }
   if (user.length != 0) {
     var errmsg = "user already exist"
@@ -32,12 +35,9 @@ exports.addUser = async (req, res, next) => {
   try {
     const salt = await bcrypt.genSalt();
     console.log("salt", salt);
-
     console.log("Salt", salt);
     console.log("Password", req.body.password);
-
     req.body.password = await bcrypt.hash(req.body.password, salt);
-
     console.log(req.body.password);
     const users = new usersData({
       firstName: req.body.fname,
@@ -54,6 +54,7 @@ exports.addUser = async (req, res, next) => {
 
 },
 exports.validateUser = async(req,res,next)=>{
+  try{
   console.log(req.body);
   const schema = Joi.object({
     email:Joi.string().email().required(),
@@ -79,4 +80,8 @@ exports.validateUser = async(req,res,next)=>{
 const authToken = jwt.sign({userId:user._id,email:user.email},"GUvi!jdks",{expiresIn:"10h"});
 console.log(authToken);
 res.send({authToken,user});
+}catch(error){
+  console.log("error",error);
 }
+}
+

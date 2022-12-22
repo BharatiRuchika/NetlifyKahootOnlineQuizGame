@@ -3,7 +3,7 @@ exports.connect = ()=>{
         const mongoose = require("mongoose");
         mongoose.connect("mongodb+srv://guvi:admin123@cluster0.bdpws.mongodb.net/kahoot?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology:true})
     }catch(err){
-       console.log(err);
+       console.log("database error",err);
        process.exit();
     }
 }

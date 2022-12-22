@@ -28,6 +28,7 @@ function App() {
       <PrivateRoute exact path="/host/:userId" component={QuizComponent} />
       <PrivateRoute exact path="/questions/:id" component={QuestionsComponent} />
       <PrivateRoute exact path="/createQuiz" component={CreateQuizComponent} />
+
       <PrivateRoute exact path="/game/:id" component={GameComponent} />
       <PrivateRoute exact path="/quiz/questions" component={AddAnswersComponent2} />
       <PrivateRoute exact path='/host/newquestion/:id/:userId' component={New_Question} />
@@ -37,6 +38,7 @@ function App() {
       <Route exact path="/users/signup" component={SignUp} />
       <Route exact path="/users/login" component={Login} />
       <PrivateRoute exact path="/users/newQuiz/:id" component={New_Quiz} />
+
     </BrowserRouter>
   );
 }

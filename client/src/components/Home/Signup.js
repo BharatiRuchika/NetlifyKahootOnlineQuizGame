@@ -52,7 +52,7 @@ export default function SignUp() {
   })
   const handleChange = async({target:{name,value}})=>{
     console.log("handlechange called");
-    console.log("value",value);
+console.log("value",value);
     let errors = state.errors;
     errors.signuperror = false;
     switch(name){
@@ -65,6 +65,7 @@ export default function SignUp() {
         }else{
           errors.fname = "";
         }
+       
         break;
       }
       case "lastName":{ 
@@ -109,9 +110,11 @@ export default function SignUp() {
         }else
         if(password==value){
           errors.cpassword = '';
+          
         }else{
           errors.cpassword = "password and confirm password are not equal"
         }
+        
         break;
       }
     }
@@ -147,15 +150,15 @@ export default function SignUp() {
     const lname1 = data.get('lastName');
     const email1 = data.get('email');
     const password1 = data.get('password');
-  var response = await axios.post("https://online-kahoot-multiplayer-quiz-game.vercel.app/users/addUser",{fname:fname1,lname:lname1,email:email1,password:password1});
+  var response = await axios.post("http://localhost:3001/users/addUser",{fname:fname1,lname:lname1,email:email1,password:password1});
       console.log("response",response.data);
      if(response.data =="user already exist"){ 
        setFlag(true);
      }else{
        var id = response.data._id;
-        if(response.status==200 ){
-          history.push(`/host/${id}`);
-        }
+   if(response.status==200 ){
+      history.push(`/host/${id}`);
+   }
      }
     }
   };

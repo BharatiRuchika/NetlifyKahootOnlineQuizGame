@@ -36,7 +36,7 @@ mongo.connect();
 
 var app = express();
 app.use(function (req, res, next) {
-  console.log("environment",process.env.NODE_ENV)
+  
   res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000","https://vercel.com");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type Accept');
@@ -197,6 +197,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.get('/',(req,res)=>{
 //   console.log(res.send("App is working fine"));
 // })
+if(process.env.NODE_ENV==="production"){
+  // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
+  const path = require("path");
+  app.use(express.static(path.join(__dirname, 'client/build')))
+  app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build'))
+  // res.send("im run");
+})
+}
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use((req,res,next)=>{
@@ -225,15 +234,7 @@ const PORT = process.env.PORT||3001;
 console.log(PORT);
 
 
-if(process.env.NODE_ENV==="production"){
-  // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
-  const path = require("path");
-  app.use(express.static(path.join(__dirname, 'client/build')))
-  app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build'))
-  // res.send("im run");
-})
-}
+
 
 httpServer.listen(PORT, () => {
  console.log("s Is Running Port: " + PORT);

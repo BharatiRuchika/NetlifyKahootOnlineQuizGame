@@ -23,6 +23,8 @@ class Player extends Component {
         }
         this.submitAnswer = this.submitAnswer.bind(this);
         this.leaveRoom = this.leaveRoom.bind(this);
+        
+   
     }
     componentDidMount() {
       
