@@ -197,15 +197,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.get('/',(req,res)=>{
 //   console.log(res.send("App is working fine"));
 // })
-if(process.env.NODE_ENV==="production"){
-  // app.use(express.static(path.join(__dirname,"Frontend_Kahoot-ma/build")));
+
+if (process.env.NODE_ENV === "production") {
   const path = require("path");
-  app.use(express.static(path.join(__dirname, 'client/build')))
+  app.use(express.static(path.join(__dirname, "client/build")));
   app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build'))
-  // res.send("im run");
-})
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
 }
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use((req,res,next)=>{
